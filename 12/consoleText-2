@@ -1,0 +1,199 @@
+Started by an SCM change
+Obtained Jenkinsfile from git https://github.com/a-chernov/student-exam2.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] properties
+[Pipeline] node
+Running on slave_container in /home/jenkins/workspace/ci-task
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+No credentials specified
+Fetching changes from the remote Git repository
+ > git rev-parse --is-inside-work-tree # timeout=10
+ > git config remote.origin.url https://github.com/a-chernov/student-exam2.git # timeout=10
+Fetching upstream changes from https://github.com/a-chernov/student-exam2.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://github.com/a-chernov/student-exam2.git +refs/heads/*:refs/remotes/origin/*
+Checking out Revision 6e8f5b3ca9f7944c08938c31f5369252badf8e0b (refs/remotes/origin/master)
+Commit message: "Update README.rst"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Tests)
+[Pipeline] sh
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 6e8f5b3ca9f7944c08938c31f5369252badf8e0b
+ > git rev-list --no-walk a215da5e6384ed8718c568efb8bd4e67c9dfd704 # timeout=10
++ python3 -m venv venv
++ . venv/bin/activate
++ deactivate nondestructive
++ [ -n  ]
++ [ -n  ]
++ [ -n  -o -n  ]
++ [ -n  ]
++ unset VIRTUAL_ENV
++ [ ! nondestructive = nondestructive ]
++ VIRTUAL_ENV=/home/jenkins/workspace/ci-task/venv
++ export VIRTUAL_ENV
++ _OLD_VIRTUAL_PATH=/usr/local/bin:/usr/bin:/bin:/usr/games
++ PATH=/home/jenkins/workspace/ci-task/venv/bin:/usr/local/bin:/usr/bin:/bin:/usr/games
++ export PATH
++ [ -n  ]
++ [ -z  ]
++ _OLD_VIRTUAL_PS1=$ 
++ [ x(venv)  != x ]
++ PS1=(venv) $ 
++ export PS1
++ [ -n  -o -n  ]
++ pip install -e .
+Obtaining file:///home/jenkins/workspace/ci-task
+Requirement already satisfied: flask in ./venv/lib/python3.5/site-packages (from js-example==1.0.0)
+Requirement already satisfied: Werkzeug>=0.14 in ./venv/lib/python3.5/site-packages (from flask->js-example==1.0.0)
+Requirement already satisfied: Jinja2>=2.10 in ./venv/lib/python3.5/site-packages (from flask->js-example==1.0.0)
+Requirement already satisfied: itsdangerous>=0.24 in ./venv/lib/python3.5/site-packages (from flask->js-example==1.0.0)
+Requirement already satisfied: click>=5.1 in ./venv/lib/python3.5/site-packages (from flask->js-example==1.0.0)
+Requirement already satisfied: MarkupSafe>=0.23 in ./venv/lib/python3.5/site-packages (from Jinja2>=2.10->flask->js-example==1.0.0)
+Installing collected packages: js-example
+  Found existing installation: js-example 1.0.0
+    Uninstalling js-example-1.0.0:
+      Successfully uninstalled js-example-1.0.0
+  Running setup.py develop for js-example
+Successfully installed js-example
++ export FLASK_APP=js_example
++ pip install -e .[test]
+Obtaining file:///home/jenkins/workspace/ci-task
+Requirement already satisfied: flask in ./venv/lib/python3.5/site-packages (from js-example==1.0.0)
+Requirement already satisfied: pytest in ./venv/lib/python3.5/site-packages (from js-example==1.0.0)
+Requirement already satisfied: coverage in ./venv/lib/python3.5/site-packages (from js-example==1.0.0)
+Requirement already satisfied: blinker in ./venv/lib/python3.5/site-packages (from js-example==1.0.0)
+Requirement already satisfied: Werkzeug>=0.14 in ./venv/lib/python3.5/site-packages (from flask->js-example==1.0.0)
+Requirement already satisfied: click>=5.1 in ./venv/lib/python3.5/site-packages (from flask->js-example==1.0.0)
+Requirement already satisfied: Jinja2>=2.10 in ./venv/lib/python3.5/site-packages (from flask->js-example==1.0.0)
+Requirement already satisfied: itsdangerous>=0.24 in ./venv/lib/python3.5/site-packages (from flask->js-example==1.0.0)
+Requirement already satisfied: pathlib2>=2.2.0; python_version < "3.6" in ./venv/lib/python3.5/site-packages (from pytest->js-example==1.0.0)
+Requirement already satisfied: atomicwrites>=1.0 in ./venv/lib/python3.5/site-packages (from pytest->js-example==1.0.0)
+Requirement already satisfied: six>=1.10.0 in ./venv/lib/python3.5/site-packages (from pytest->js-example==1.0.0)
+Requirement already satisfied: py>=1.5.0 in ./venv/lib/python3.5/site-packages (from pytest->js-example==1.0.0)
+Requirement already satisfied: attrs>=17.4.0 in ./venv/lib/python3.5/site-packages (from pytest->js-example==1.0.0)
+Requirement already satisfied: pluggy>=0.7 in ./venv/lib/python3.5/site-packages (from pytest->js-example==1.0.0)
+Requirement already satisfied: more-itertools>=4.0.0 in ./venv/lib/python3.5/site-packages (from pytest->js-example==1.0.0)
+Requirement already satisfied: setuptools in ./venv/lib/python3.5/site-packages (from pytest->js-example==1.0.0)
+Requirement already satisfied: MarkupSafe>=0.23 in ./venv/lib/python3.5/site-packages (from Jinja2>=2.10->flask->js-example==1.0.0)
+Installing collected packages: js-example
+  Found existing installation: js-example 1.0.0
+    Uninstalling js-example-1.0.0:
+      Successfully uninstalled js-example-1.0.0
+  Running setup.py develop for js-example
+Successfully installed js-example
++ coverage run -m pytest
+============================= test session starts ==============================
+platform linux -- Python 3.5.3, pytest-4.2.0, py-1.7.0, pluggy-0.8.1
+rootdir: /home/jenkins/workspace/ci-task, inifile: setup.cfg
+collected 8 items
+
+tests/test_js_example.py ........                                        [100%]
+
+=========================== 8 passed in 0.12 seconds ===========================
++ coverage report
+Name                     Stmts   Miss Branch BrPart  Cover
+----------------------------------------------------------
+js_example/__init__.py       3      0      0      0   100%
+js_example/views.py         11      0      0      0   100%
+----------------------------------------------------------
+TOTAL                       14      0      0      0   100%
++ deactivate
++ [ -n /usr/local/bin:/usr/bin:/bin:/usr/games ]
++ PATH=/usr/local/bin:/usr/bin:/bin:/usr/games
++ export PATH
++ unset _OLD_VIRTUAL_PATH
++ [ -n  ]
++ [ -n  -o -n  ]
++ [ -n $  ]
++ PS1=$ 
++ export PS1
++ unset _OLD_VIRTUAL_PS1
++ unset VIRTUAL_ENV
++ [ !  = nondestructive ]
++ unset -f deactivate
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker build -t achernov101/epam-exam:flask-1.2 .
+Sending build context to Docker daemon  13.38MB
+Step 1/5 : FROM alpine:latest
+ ---> 3f53bb00af94
+Step 2/5 : MAINTAINER Anton Chernov
+ ---> Using cache
+ ---> 61868cc736d2
+Step 3/5 : RUN apk update &&         apk add --no-cache git python3 &&         cd /root &&         git clone https://github.com/a-chernov/student-exam2.git && cd student-exam2/ &&         python3 -m venv venv && . venv/bin/activate && pip3 install -e .
+ ---> Using cache
+ ---> ebc379f2e4b6
+Step 4/5 : ENV FLASK_APP js_example
+ ---> Using cache
+ ---> 12f862dd75db
+Step 5/5 : CMD cd /root/student-exam2/ && . venv/bin/activate && flask run --host=0.0.0.0
+ ---> Using cache
+ ---> 9bf66bc07f05
+Successfully built 9bf66bc07f05
+Successfully tagged achernov101/epam-exam:flask-1.2
+[Pipeline] dockerFingerprintFrom
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withDockerRegistry
+$ docker login -u achernov101 -p ******** https://index.docker.io/v1/
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+[Pipeline] {
+[Pipeline] sh
++ docker tag achernov101/epam-exam:flask-1.2 achernov101/epam-exam:flask-1.2
+[Pipeline] sh
+WARNING! Your password will be stored unencrypted in /home/jenkins/workspace/ci-task@tmp/21097fa7-4cb7-4b6e-b67d-14d3196d1493/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
++ docker push achernov101/epam-exam:flask-1.2
+The push refers to repository [docker.io/achernov101/epam-exam]
+0c031f226689: Preparing
+7bff100f35cb: Preparing
+0c031f226689: Layer already exists
+7bff100f35cb: Layer already exists
+flask-1.2: digest: sha256:5f141571226ef8668cd64bbe01d2bb06d0513e68acfc8907668c293ae504207e size: 740
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

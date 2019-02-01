@@ -1,0 +1,234 @@
+Started by an SCM change
+Obtained Jenkinsfile from git https://github.com/a-chernov/student-exam2.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] properties
+[Pipeline] node
+Running on slave_container in /home/jenkins/workspace/ci-task
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/a-chernov/student-exam2.git
+ > git init /home/jenkins/workspace/ci-task # timeout=10
+Fetching upstream changes from https://github.com/a-chernov/student-exam2.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://github.com/a-chernov/student-exam2.git +refs/heads/*:refs/remotes/origin/*
+ > git config remote.origin.url https://github.com/a-chernov/student-exam2.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/a-chernov/student-exam2.git # timeout=10
+Fetching upstream changes from https://github.com/a-chernov/student-exam2.git
+ > git fetch --tags --progress https://github.com/a-chernov/student-exam2.git +refs/heads/*:refs/remotes/origin/*
+Checking out Revision a215da5e6384ed8718c568efb8bd4e67c9dfd704 (refs/remotes/origin/master)
+Commit message: "Update Jenkinsfile"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Tests)
+[Pipeline] sh
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a215da5e6384ed8718c568efb8bd4e67c9dfd704
++ python3 -m venv venv
++ . venv/bin/activate
++ deactivate nondestructive
++ [ -n  ]
++ [ -n  ]
++ [ -n  -o -n  ]
++ [ -n  ]
++ unset VIRTUAL_ENV
++ [ ! nondestructive = nondestructive ]
++ VIRTUAL_ENV=/home/jenkins/workspace/ci-task/venv
++ export VIRTUAL_ENV
++ _OLD_VIRTUAL_PATH=/usr/local/bin:/usr/bin:/bin:/usr/games
++ PATH=/home/jenkins/workspace/ci-task/venv/bin:/usr/local/bin:/usr/bin:/bin:/usr/games
++ export PATH
++ [ -n  ]
++ [ -z  ]
++ _OLD_VIRTUAL_PS1=$ 
++ [ x(venv)  != x ]
++ PS1=(venv) $ 
++ export PS1
++ [ -n  -o -n  ]
++ pip install -e .
+Obtaining file:///home/jenkins/workspace/ci-task
+Collecting flask (from js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/7f/e7/08578774ed4536d3242b14dacb4696386634607af824ea997202cd0edb4b/Flask-1.0.2-py2.py3-none-any.whl
+Collecting itsdangerous>=0.24 (from flask->js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/76/ae/44b03b253d6fade317f32c24d100b3b35c2239807046a4c953c7b89fa49e/itsdangerous-1.1.0-py2.py3-none-any.whl
+Collecting Werkzeug>=0.14 (from flask->js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/20/c4/12e3e56473e52375aa29c4764e70d1b8f3efa6682bef8d0aae04fe335243/Werkzeug-0.14.1-py2.py3-none-any.whl
+Collecting Jinja2>=2.10 (from flask->js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/7f/ff/ae64bacdfc95f27a016a7bed8e8686763ba4d277a78ca76f32659220a731/Jinja2-2.10-py2.py3-none-any.whl
+Collecting click>=5.1 (from flask->js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/fa/37/45185cb5abbc30d7257104c434fe0b07e5a195a6847506c074527aa599ec/Click-7.0-py2.py3-none-any.whl
+Collecting MarkupSafe>=0.23 (from Jinja2>=2.10->flask->js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/3e/a5/e188980ef1d0a4e0788b5143ea933f9afd760df38fec4c0b72b5ae3060c8/MarkupSafe-1.1.0-cp35-cp35m-manylinux1_x86_64.whl
+Installing collected packages: itsdangerous, Werkzeug, MarkupSafe, Jinja2, click, flask, js-example
+  Running setup.py develop for js-example
+Successfully installed Jinja2-2.10 MarkupSafe-1.1.0 Werkzeug-0.14.1 click-7.0 flask-1.0.2 itsdangerous-1.1.0 js-example
++ export FLASK_APP=js_example
++ pip install -e .[test]
+Obtaining file:///home/jenkins/workspace/ci-task
+Requirement already satisfied: flask in ./venv/lib/python3.5/site-packages (from js-example==1.0.0)
+Collecting pytest (from js-example==1.0.0)
+  Downloading https://files.pythonhosted.org/packages/0d/c4/8093b4ffdde66628d4cb138d1d53726e2c21c23ac397cb75494e3f4310c9/pytest-4.2.0-py2.py3-none-any.whl (218kB)
+Collecting coverage (from js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/fa/7c/e728df519842d537b2a4498553e2396867f50120fe303cd2b45e54b7e323/coverage-4.5.2-cp35-cp35m-manylinux1_x86_64.whl
+Collecting blinker (from js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/1b/51/e2a9f3b757eb802f61dc1f2b09c8c99f6eb01cf06416c0671253536517b6/blinker-1.4.tar.gz
+Requirement already satisfied: Werkzeug>=0.14 in ./venv/lib/python3.5/site-packages (from flask->js-example==1.0.0)
+Requirement already satisfied: itsdangerous>=0.24 in ./venv/lib/python3.5/site-packages (from flask->js-example==1.0.0)
+Requirement already satisfied: Jinja2>=2.10 in ./venv/lib/python3.5/site-packages (from flask->js-example==1.0.0)
+Requirement already satisfied: click>=5.1 in ./venv/lib/python3.5/site-packages (from flask->js-example==1.0.0)
+Collecting six>=1.10.0 (from pytest->js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/73/fb/00a976f728d0d1fecfe898238ce23f502a721c0ac0ecfedb80e0d88c64e9/six-1.12.0-py2.py3-none-any.whl
+Collecting py>=1.5.0 (from pytest->js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/3e/c7/3da685ef117d42ac8d71af525208759742dd235f8094221fdaafcd3dba8f/py-1.7.0-py2.py3-none-any.whl
+Collecting more-itertools>=4.0.0 (from pytest->js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/a4/a6/42f17d065bda1fac255db13afc94c93dbfb64393eae37c749b4cb0752fc7/more_itertools-5.0.0-py3-none-any.whl
+Requirement already satisfied: setuptools in ./venv/lib/python3.5/site-packages (from pytest->js-example==1.0.0)
+Collecting atomicwrites>=1.0 (from pytest->js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/3a/9a/9d878f8d885706e2530402de6417141129a943802c084238914fa6798d97/atomicwrites-1.2.1-py2.py3-none-any.whl
+Collecting pathlib2>=2.2.0; python_version < "3.6" (from pytest->js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/2a/46/c696dcf1c7aad917b39b875acdc5451975e3a9b4890dca8329983201c97a/pathlib2-2.3.3-py2.py3-none-any.whl
+Collecting pluggy>=0.7 (from pytest->js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/2d/60/f58d9e8197f911f9405bf7e02227b43a2acc2c2f1a8cbb1be5ecf6bfd0b8/pluggy-0.8.1-py2.py3-none-any.whl
+Collecting attrs>=17.4.0 (from pytest->js-example==1.0.0)
+  Using cached https://files.pythonhosted.org/packages/3a/e1/5f9023cc983f1a628a8c2fd051ad19e76ff7b142a0faf329336f9a62a514/attrs-18.2.0-py2.py3-none-any.whl
+Requirement already satisfied: MarkupSafe>=0.23 in ./venv/lib/python3.5/site-packages (from Jinja2>=2.10->flask->js-example==1.0.0)
+Building wheels for collected packages: blinker
+  Running setup.py bdist_wheel for blinker: started
+  Running setup.py bdist_wheel for blinker: finished with status 'error'
+  Complete output from command /home/jenkins/workspace/ci-task/venv/bin/python3 -u -c "import setuptools, tokenize;__file__='/tmp/pip-build-bwkgdlpi/blinker/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" bdist_wheel -d /tmp/tmpuysnf2i1pip-wheel- --python-tag cp35:
+  usage: -c [global_opts] cmd1 [cmd1_opts] [cmd2 [cmd2_opts] ...]
+     or: -c --help [cmd1 cmd2 ...]
+     or: -c --help-commands
+     or: -c cmd --help
+  
+  error: invalid command 'bdist_wheel'
+  
+  ----------------------------------------
+  Failed building wheel for blinker
+  Running setup.py clean for blinker
+Failed to build blinker
+Installing collected packages: six, py, more-itertools, atomicwrites, pathlib2, pluggy, attrs, pytest, coverage, blinker, js-example
+  Running setup.py install for blinker: started
+    Running setup.py install for blinker: finished with status 'done'
+  Found existing installation: js-example 1.0.0
+    Uninstalling js-example-1.0.0:
+      Successfully uninstalled js-example-1.0.0
+  Running setup.py develop for js-example
+Successfully installed atomicwrites-1.2.1 attrs-18.2.0 blinker-1.4 coverage-4.5.2 js-example more-itertools-5.0.0 pathlib2-2.3.3 pluggy-0.8.1 py-1.7.0 pytest-4.2.0 six-1.12.0
++ coverage run -m pytest
+============================= test session starts ==============================
+platform linux -- Python 3.5.3, pytest-4.2.0, py-1.7.0, pluggy-0.8.1
+rootdir: /home/jenkins/workspace/ci-task, inifile: setup.cfg
+collected 8 items
+
+tests/test_js_example.py ........                                        [100%]
+
+=========================== 8 passed in 0.13 seconds ===========================
++ coverage report
+Name                     Stmts   Miss Branch BrPart  Cover
+----------------------------------------------------------
+js_example/__init__.py       3      0      0      0   100%
+js_example/views.py         11      0      0      0   100%
+----------------------------------------------------------
+TOTAL                       14      0      0      0   100%
++ deactivate
++ [ -n /usr/local/bin:/usr/bin:/bin:/usr/games ]
++ PATH=/usr/local/bin:/usr/bin:/bin:/usr/games
++ export PATH
++ unset _OLD_VIRTUAL_PATH
++ [ -n  ]
++ [ -n  -o -n  ]
++ [ -n $  ]
++ PS1=$ 
++ export PS1
++ unset _OLD_VIRTUAL_PS1
++ unset VIRTUAL_ENV
++ [ !  = nondestructive ]
++ unset -f deactivate
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker build -t achernov101/epam-exam:flask-1.1 .
+Sending build context to Docker daemon  13.38MB
+Step 1/5 : FROM alpine:latest
+ ---> 3f53bb00af94
+Step 2/5 : MAINTAINER Anton Chernov
+ ---> Using cache
+ ---> 61868cc736d2
+Step 3/5 : RUN apk update &&         apk add --no-cache git python3 &&         cd /root &&         git clone https://github.com/a-chernov/student-exam2.git && cd student-exam2/ &&         python3 -m venv venv && . venv/bin/activate && pip3 install -e .
+ ---> Using cache
+ ---> ebc379f2e4b6
+Step 4/5 : ENV FLASK_APP js_example
+ ---> Using cache
+ ---> 12f862dd75db
+Step 5/5 : CMD cd /root/student-exam2/ && . venv/bin/activate && flask run --host=0.0.0.0
+ ---> Using cache
+ ---> 9bf66bc07f05
+Successfully built 9bf66bc07f05
+Successfully tagged achernov101/epam-exam:flask-1.1
+[Pipeline] dockerFingerprintFrom
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withDockerRegistry
+$ docker login -u achernov101 -p ******** https://index.docker.io/v1/
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+[Pipeline] {
+[Pipeline] sh
++ docker tag achernov101/epam-exam:flask-1.1 achernov101/epam-exam:flask-1.1
+WARNING! Your password will be stored unencrypted in /home/jenkins/workspace/ci-task@tmp/cbf4b7b1-0220-4a0d-bd1b-347b4305dbbd/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] sh
++ docker push achernov101/epam-exam:flask-1.1
+The push refers to repository [docker.io/achernov101/epam-exam]
+0c031f226689: Preparing
+7bff100f35cb: Preparing
+0c031f226689: Layer already exists
+7bff100f35cb: Layer already exists
+flask-1.1: digest: sha256:5f141571226ef8668cd64bbe01d2bb06d0513e68acfc8907668c293ae504207e size: 740
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

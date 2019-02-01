@@ -1,0 +1,154 @@
+Started by user admin
+Obtained Jenkinsfile from git https://github.com/a-chernov/ansible-exam
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] properties
+[Pipeline] node
+Running on slave_container in /home/jenkins/workspace/cd-task
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/a-chernov/ansible-exam
+ > git init /home/jenkins/workspace/cd-task # timeout=10
+Fetching upstream changes from https://github.com/a-chernov/ansible-exam
+ > git --version # timeout=10
+ > git fetch --tags --progress https://github.com/a-chernov/ansible-exam +refs/heads/*:refs/remotes/origin/*
+ > git config remote.origin.url https://github.com/a-chernov/ansible-exam # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/a-chernov/ansible-exam # timeout=10
+Fetching upstream changes from https://github.com/a-chernov/ansible-exam
+ > git fetch --tags --progress https://github.com/a-chernov/ansible-exam +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 414e1fdfc00e9c00d98e53e6b75c2726db9d7902 (refs/remotes/origin/master)
+Commit message: "init"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] sh
++ mkdir -p roles
++ ansible-galaxy install -p roles -r requirements.yml
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 414e1fdfc00e9c00d98e53e6b75c2726db9d7902
+- extracting docker-install-role to /home/jenkins/workspace/cd-task/roles/docker-install-role
+- docker-install-role was installed successfully
+- extracting flask-deploy-role to /home/jenkins/workspace/cd-task/roles/flask-deploy-role
+- flask-deploy-role was installed successfully
+- extracting nginx-deploy-role to /home/jenkins/workspace/cd-task/roles/nginx-deploy-role
+- nginx-deploy-role was installed successfully
+[Pipeline] ansiblePlaybook
+[cd-task] $ ansible-playbook playbook.yml -i inventory --vault-password-file /home/jenkins/workspace/cd-task/vault5315007042551208809.password
+
+PLAY [centOS] ******************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [172.17.0.1]
+
+TASK [docker-install-role : ensure old versions of Docker are not installed] ***
+ok: [172.17.0.1]
+
+TASK [docker-install-role : add docker GPG key] ********************************
+ok: [172.17.0.1]
+
+TASK [docker-install-role : add docker repository] *****************************
+ok: [172.17.0.1]
+
+TASK [docker-install-role : configure docker edge repo] ************************
+ok: [172.17.0.1]
+
+TASK [docker-install-role : configure docker test repo] ************************
+ok: [172.17.0.1]
+
+TASK [docker-install-role : install docker] ************************************
+ok: [172.17.0.1]
+
+TASK [docker-install-role : install python docker packages] ********************
+ok: [172.17.0.1]
+
+TASK [docker-install-role : ensure docker is started and enabled at boot] ******
+ok: [172.17.0.1]
+
+TASK [docker-install-role : ensure docker users are added to the docker group] ***
+ok: [172.17.0.1] => (item=avc)
+
+TASK [flask-deploy-role : create docker network] *******************************
+ok: [172.17.0.1]
+
+TASK [flask-deploy-role : log into docker hub registry] ************************
+changed: [172.17.0.1]
+
+TASK [flask-deploy-role : run 1st container] ***********************************
+changed: [172.17.0.1]
+
+TASK [flask-deploy-role : run 2nd container] ***********************************
+changed: [172.17.0.1]
+
+TASK [flask-deploy-role : run 3rd container] ***********************************
+changed: [172.17.0.1]
+
+TASK [nginx-deploy-role : collect 1st flask container ip address] **************
+changed: [172.17.0.1]
+
+TASK [nginx-deploy-role : set_fact] ********************************************
+ok: [172.17.0.1]
+
+TASK [nginx-deploy-role : collect 2nd flask container ip address] **************
+changed: [172.17.0.1]
+
+TASK [nginx-deploy-role : set_fact] ********************************************
+ok: [172.17.0.1]
+
+TASK [nginx-deploy-role : collect 3rd flask container ip address] **************
+changed: [172.17.0.1]
+
+TASK [nginx-deploy-role : set_fact] ********************************************
+ok: [172.17.0.1]
+
+TASK [nginx-deploy-role : create nginx.conf] ***********************************
+ok: [172.17.0.1]
+
+TASK [nginx-deploy-role : run nginx container] *********************************
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] ansiblePlaybook
+[cd-task] $ ansible-playbook test.yml -i inventory
+
+PLAY [centOS] ******************************************************************
+
+TASK [Gathering Facts] *********************************************************
+changed: [172.17.0.1]
+
+PLAY RECAP *********************************************************************
+172.17.0.1                 : ok=23   changed=8    unreachable=0    failed=0   
+
+ok: [172.17.0.1]
+
+TASK [check connection (GET request) and collect http status code] *************
+ok: [172.17.0.1]
+
+TASK [debug] *******************************************************************
+ok: [172.17.0.1] => {
+    "statuscode.status": "200"
+}
+
+TASK [sleep (just for jenkins correct output of above debug msg)] **************
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
